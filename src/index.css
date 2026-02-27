@@ -1,13 +1,322 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --purple:       #6c25ff;
+  --purple-light: #c9b8ff;
+  --purple-label: #8447ff;
+  --bg:           #f7f8fa;
+  --white:        #ffffff;
+  --text-dark:    #1a1a2e;
+  --text-gray:    #7c7c8a;
+  --border:       #e2e4ea;
+  --font:         'DM Sans', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: var(--font);
+  background: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Mobile Shell ── */
+.mobile-shell {
+  width: 375px;
+  min-height: 812px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #e0e0e0;
+}
+
+/* ── Screen base ── */
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 812px;
+  animation: fadeIn 0.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ════════════════════════════
+   WELCOME SCREEN
+════════════════════════════ */
+.welcome-screen {
+  background: var(--bg);
+  justify-content: flex-end;
+}
+
+.welcome-top {
+  flex: 1;
+  background: var(--bg);
+}
+
+.welcome-content {
+  background: var(--bg);
+  padding: 32px 24px 48px;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+.welcome-subtitle {
+  font-size: 14px;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* ════════════════════════════
+   REGISTER / LOGIN SCREENS
+════════════════════════════ */
+.form-screen {
+  background: var(--bg);
+  padding: 44px 24px 32px;
+}
+
+.form-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.form-subtitle {
+  font-size: 14px;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* ── Input group ── */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--purple-label);
+  margin-bottom: 6px;
+}
+
+.input-group label .required { color: #e53935; }
+
+.input-group input {
+  width: 100%;
+  padding: 13px 14px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus { border-color: var(--purple); }
+.input-group input::placeholder { color: #c0c0cc; }
+
+/* ── Radio group ── */
+.radio-group { margin-bottom: 24px; }
+
+.radio-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.radio-title .required { color: #e53935; }
+
+.radio-options {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.radio-option input[type="radio"]:checked {
+  border: 6px solid var(--purple);
+  background: var(--white);
+}
+
+/* ════════════════════════════
+   BUTTONS
+════════════════════════════ */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--purple);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.2s;
+  letter-spacing: 0.1px;
+}
+
+.btn-primary:hover { background: #5a1ee0; }
+
+.btn-primary.disabled {
+  background: #cbcbd8;
+  cursor: default;
+}
+
+.btn-primary.disabled:hover { background: #cbcbd8; }
+
+.btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--purple-light);
+  color: var(--text-dark);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 12px;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover { background: #b8a0ff; }
+
+/* ════════════════════════════
+   ACCOUNT SCREEN
+════════════════════════════ */
+.account-screen {
+  background: var(--bg);
+  padding: 0;
+}
+
+.account-header {
+  background: var(--white);
+  padding: 44px 24px 24px;
+  border-bottom: 1.5px dashed var(--border);
+}
+
+.account-header-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar-wrapper { position: relative; flex-shrink: 0; }
+
+.avatar-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9b8ff, #8447ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+
+.camera-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  background: var(--purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white);
+  cursor: pointer;
+}
+
+.camera-btn svg { width: 11px; height: 11px; fill: white; }
+
+.profile-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.profile-info p {
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+.account-bio {
+  padding: 20px 24px;
+  font-size: 14px;
+  color: #555566;
+  line-height: 1.65;
+  border-bottom: 1.5px dashed var(--border);
+  background: var(--bg);
+}
+
+/* ── Responsive ── */
+@media (max-width: 420px) {
+  .mobile-shell { width: 100vw; min-height: 100vh; }
+  body { background: var(--bg); }
 }
