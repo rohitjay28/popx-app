@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/popx-app/static/css/main.23b85d01.css",
+    "main.js": "/popx-app/static/js/main.c75547b5.js",
+    "index.html": "/popx-app/index.html",
+    "main.23b85d01.css.map": "/popx-app/static/css/main.23b85d01.css.map",
+    "main.c75547b5.js.map": "/popx-app/static/js/main.c75547b5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23b85d01.css",
+    "static/js/main.c75547b5.js"
+  ]
+}
